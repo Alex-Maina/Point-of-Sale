@@ -2,6 +2,7 @@ from customer import *
 from products import *
 from purchase import *
 
+
 def menu ():
     #Initialising choice_main_menu
     choice_main_menu = 0
@@ -85,4 +86,16 @@ def menu ():
         else:
             print("Invalid choice. Please try again")
         
-        
+
+
+def write_file():
+    textfile = open("customers.txt", "w")
+    textfile = open("customers.txt", "w")
+    for lists in customers:
+        textfile.write((' - '.join(lists)) + "\n")
+    textfile.close()
+    file = open("customers.txt", "r")
+    for lines in file:
+        print (lines + "\n")
+
+    

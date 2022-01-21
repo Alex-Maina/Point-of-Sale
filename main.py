@@ -1,7 +1,10 @@
+import sys
 from menu import *
 
 def main ():
     menu ()
+    #write_file()
+    
 
 
 
