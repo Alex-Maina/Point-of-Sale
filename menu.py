@@ -32,11 +32,11 @@ def menu ():
                       Please enter your choice: """)
 
             if customer_sub_menu == "1":
-                add_customer ()
+                create ()
             elif customer_sub_menu == "2":
-                update_customer ()
+                update ()
             elif customer_sub_menu == "3":
-                delete_customer ()
+                delete ()
             elif customer_sub_menu == "4":
                 list_customers ()
             elif customer_sub_menu == "0":
@@ -60,11 +60,11 @@ def menu ():
                       Please enter your choice: """)
 
             if product_sub_menu == "1":
-                add_product ()
+                createProduct ()
             elif product_sub_menu == "2":
-                update_product ()
+                updateProduct ()
             elif product_sub_menu == "3":
-                delete_product ()
+                deleteProduct ()
             elif product_sub_menu == "4":
                 list_products ()
             elif product_sub_menu == "5":
@@ -85,17 +85,3 @@ def menu ():
         
         else:
             print("Invalid choice. Please try again")
-        
-
-
-def write_file():
-    textfile = open("customers.txt", "w")
-    textfile = open("customers.txt", "w")
-    for lists in customers:
-        textfile.write((' - '.join(lists)) + "\n")
-    textfile.close()
-    file = open("customers.txt", "r")
-    for lines in file:
-        print (lines + "\n")
-
-    

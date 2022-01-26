@@ -1,11 +1,19 @@
-customers = [["2a","Winnie","Ndura Str Ruaka"],["3a","Maina","Wood Av Roslyn"]]
+import csv
+import sys
 
 
 
-textfile = open("customers.txt", "w")
-for lists in customers:
-    textfile.write((' - '.join(lists)) + "\n")
-textfile.close()
-file = open("customers.txt", "r")
-for lines in file:
-    print (lines + "\n")
+
+checker=[]
+with open('customer.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        checker.append(row[0])
+    
+print(checker)
+exist = checker.count("123")
+if exist == 1:
+    print("you have to reenter")
+    
+
+    
