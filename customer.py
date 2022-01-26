@@ -26,7 +26,7 @@ def create():
     exist = checker.count(customer_id)
     if exist == 1:
         print ("The ID already exists. Enter a valid one")
-        exit
+    
         create ()
     else:
         #after validating the ID the user can enter the other details
