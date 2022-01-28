@@ -1,3 +1,0 @@
-found = [[]]
-
-print (found)
