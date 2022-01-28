@@ -2,7 +2,7 @@ import csv
 
 class Product:
     all = []
-    #Instance to create a customer
+    #Instance to create a product
     def __init__(self, id: str, name: str, quantity:int, price:float):
         self.id = id
         self.name = name
@@ -11,32 +11,35 @@ class Product:
         
         #add to list everytime an instance is created
         Product.all.append(self)
+    
     #represent the objects in a readerble manner    
     def __repr__(self):
         return f"Product('{self.id}','{self.name}','{self.quantity}','{self.price}')"
     
 #product creation 
 def createProduct():
-    product_id = input("Assign product ID: ")
-    #checks if another similar ID already exists
-    checker=[]
-    with open('products.csv', 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            checker.append(row[0])
-            
-    exist = checker.count(product_id)
-    if exist == 1:
-        print ("The ID already exists. Enter a valid one")
-        exit
-        createProduct ()
-    else:
-        #after validating the ID the user can enter the other details
-        name = input("Enter the product name: ").title()
-        quantity = int(input("Enter the quantity of the product: "))
-        price = float(input("Enter the price: "))
-        product = Product(product_id, name, quantity, price)
+    #ensures the entered ID is unique
+    def checkID ():
+        global product_id
+        product_id = input("Assign product ID: ")
+        #checks if another similar ID already exists
+        checker=[]
+        with open('products.csv', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                checker.append(row[0])
+        exist = checker.count(product_id)
+        if exist != 0:
+            print ("The ID already exists. Enter a valid one")
+            checkID ()
+    checkID ()
     
+    #after validating the ID the user can enter the other details
+    name = input("Enter the product name: ").title()
+    quantity = int(input("Enter the quantity of the product: "))
+    price = float(input("Enter the price: "))
+    product = Product(product_id, name, quantity, price)
+
     #append the instance to a csv file
     with open("products.csv","a", newline='') as product_file:
         writer = csv.writer(product_file)
@@ -81,8 +84,6 @@ def deleteProduct():
         print("Product deleted successfully")
        
     
-    
-
 #update product 
 def updateProduct():
     print ()
@@ -111,7 +112,7 @@ def updateProduct():
                     updatedList.append(row)
         updateFile(updatedList)
         
-        #updating the list of
+        #updating the list of the selected entry
         print ("Entry to be updated is: ")
         print (edit)
         name = input("Update the name of the product: ").title()
@@ -132,10 +133,9 @@ def list_products():
             reader = csv.reader(file)
             for row in reader:
                 products.append(row)
-    for i in range(len(products)) : 
-        for j in range(len(products[i])) : 
-            print(products[i][j], end=" ")
-        print()    
+    for product in products : 
+        print(product [1])
+    print()    
 
 def search_product ():
     print("Search product")
@@ -147,11 +147,12 @@ def search_product ():
         for row in reader:
             if row[1]==searchName:
                 searchList.append(row)
-    
-        print(searchList)    
-    
-       
-        
+        if len(searchList) == 0:
+            print ("Product not found")
+        else:
+            print("Product ID:      " + searchList[0][0])
+            print("Price:        " + searchList[0][3])
+            print("Amount In-stock: " + searchList[0][2])    
 
 
 
