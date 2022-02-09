@@ -15,11 +15,9 @@ class Product:
     #represent the objects in a readerble manner    
     def __repr__(self):
         return f"Product('{self.id}','{self.name}','{self.quantity}','{self.price}')"
-    
-#product creation 
-def createProduct():
-    #ensures the entered ID is unique
-    def checkID ():
+
+#ensures the entered ID is unique
+def checkID ():
         global product_id
         product_id = input("Assign product ID: ")
         #checks if another similar ID already exists
@@ -32,12 +30,19 @@ def createProduct():
         if exist != 0:
             print ("The ID already exists. Enter a valid one")
             checkID ()
+
+#product creation 
+def createProduct():
     checkID ()
     
     #after validating the ID the user can enter the other details
     name = input("Enter the product name: ").title()
     quantity = int(input("Enter the quantity of the product: "))
+    if quantity < 0:
+        quantity = int(input("Quantity cannot be less than zero. Please enter the correct quantity of the product: "))
     price = float(input("Enter the price: "))
+    if price < 0:
+        price = int(input("Price cannot be less than zero. Please enter the correct price of the product: "))
     product = Product(product_id, name, quantity, price)
 
     #append the instance to a csv file
@@ -82,7 +87,7 @@ def deleteProduct():
         updateFile(updatedList)
         
         print("Product deleted successfully")
-       
+
     
 #update product 
 def updateProduct():
@@ -153,9 +158,3 @@ def search_product ():
             print("Product ID:      " + searchList[0][0])
             print("Price:        " + searchList[0][3])
             print("Amount In-stock: " + searchList[0][2])    
-
-
-
-
-
-
