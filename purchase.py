@@ -7,9 +7,8 @@ foundCustomer = []
 foundProduct = [] 
 purchases=[]
 
-
-def customer():
-    def checkID ():
+#Checks whether the customer ID exists
+def checkID ():
         print ()
         global customerID 
         customerID = input("Enter the customer ID to make a purchase: \n")
@@ -32,7 +31,10 @@ def customer():
                 checkID ()
             elif selection == "2":
                 create()
-                checkID ()     
+                checkID () 
+
+#Requests for the customer ID to makke a purchase
+def customer():    
     checkID ()
     
     #writes the row to a list
@@ -45,8 +47,8 @@ def customer():
         print ("Customer found: "+foundCustomer[0][1])
         
 
-def sell ():
-    def checkID ():
+#Checks whether the product ID exists
+def checkProductID ():
         print ()
         global productID 
         productID = input("Enter the product ID to make a purchase: \n")
@@ -60,8 +62,11 @@ def sell ():
         exist = checker.count(productID)
         if exist == 0:
             print ("The ID entered does not exist. Enter a valid ID")
-            checkID ()     
-    checkID ()
+            checkProductID () 
+
+#makes a sale
+def sell ():    
+    checkProductID ()
     
     #writes the row to a list
     with open('products.csv', 'r') as file:
@@ -101,7 +106,7 @@ def sell ():
         elif anotherPurchase == "2":
             checkout ()
 
-
+#Checkout function
 def checkout():
     sum = 0
     for purchase in purchases:
@@ -141,6 +146,7 @@ def checkout():
         
         updateInventory()
 
+#Updates inventory upon successful purchase
 def updateInventory ():
     for purchase in purchases:
         updateID = purchase[0]
