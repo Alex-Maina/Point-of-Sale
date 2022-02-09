@@ -12,10 +12,9 @@ class Customer:
     #represent the objects in a readerble manner    
     def __repr__(self):
         return f"Customer('{self.id}','{self.name}','{self.address}')"
-    
-#customer creation 
-def create():
-    def checkID ():
+
+#Checks if a similar ID exists
+def checkID ():
         global customer_id
         customer_id = input("Assign customer ID: ")
         #checks if another similar ID already exists
@@ -28,6 +27,9 @@ def create():
         if exist != 0:
             print ("The ID already exists. Enter a valid one")
             checkID ()
+
+#customer creation 
+def create():
     checkID ()
     
     #after validating the ID the user can enter the other details
